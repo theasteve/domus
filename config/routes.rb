@@ -8,4 +8,7 @@ Rails.application.routes.draw do
       resources :tenants
     end
   end
+
+  get "property_owners", to: "property_owners#index"
+  post "property_owners", to: "property_owners#sign_in"
 end
