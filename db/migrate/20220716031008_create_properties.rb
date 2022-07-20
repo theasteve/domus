@@ -2,8 +2,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
   def change
     create_table :properties do |t|
       t.string :building_name
-      t.string :address_line_one
-      t.string :address_line_two
+      t.string :address
       t.string :city
       t.string :state
       t.string :zipcode
