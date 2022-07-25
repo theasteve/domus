@@ -7,6 +7,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.string :state
       t.string :zipcode
       t.string :country
+      t.text   :notes
       t.references :property_owner, foreign_key: true
 
       t.timestamps

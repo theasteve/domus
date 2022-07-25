@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_010722) do
     t.string "state"
     t.string "zipcode"
     t.string "country"
+    t.text "notes"
     t.bigint "property_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
