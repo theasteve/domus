@@ -1,14 +1,102 @@
 <div class="py-6">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <h1 class="text-2xl font-semibold text-gray-900">
-       <%= @property.building_name %>
+      Property Information
     </h1>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-6">
     <!-- Replace with your content -->
-    <div class="py-4">
-      <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
-        # content here
+    <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900"><%= @property.building_name %></h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">Property details and units.</p>
+      </div>
+      <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+        <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Property ID</dt>
+            <dd class="mt-1 text-sm text-gray-900"><%= @property.id %></dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Address</dt>
+            <dd class="mt-1 text-sm text-gray-900"><%= @property.address %></dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">City</dt>
+            <dd class="mt-1 text-sm text-gray-900"><%= @property.city %></dd>
+          </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">State</dt>
+            <dd class="mt-1 text-sm text-gray-900"><%= @property.state %></dd>
+          </div>
+          <div class="sm:col-span-2">
+            <dt class="text-sm font-medium text-gray-500">Notes</dt>
+            <dd class="mt-1 text-sm text-gray-900"><%= @property.notes %></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="px-4 sm:px-6 lg:px-6 py-8">
+      <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+          <h1 class="text-xl font-semibold text-gray-900">Units</h1>
+          <p class="mt-2 text-sm text-gray-700">A list of all the units that belong to this property</p>
+        </div>
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+          <%= link_to new_property_unit_path(@property), class:"inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+
+            Add Unit
+          <% end %>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+                <tr>
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">Unit Name</th>
+                  <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Monthly Rent</th>
+                  <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Rooms</th>
+                  <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Status</th>
+                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6 md:pr-0">
+                    <span class="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <% @property.units.each do |unit| %>
+                  <tr>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"><%= unit.apartment_name %></td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= unit.monthly_rent %></td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= unit.rooms %></td>
+                    <td class="whitespace-nowrap py-4 px-3">
+                      <% if unit.status == "vacant" %>
+                      <span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800">
+                        <%= unit.status %>
+                      </span>
+
+                      <% else %>
+                      <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                        <%= unit.status %>
+                      </span>
+<% end %>
+
+                    </td>
+                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                      <%= link_to "Show",unit_path(unit), class:"text-indigo-600 hover:text-indigo-900"%>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <!-- /End replace -->

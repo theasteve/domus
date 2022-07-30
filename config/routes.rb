@@ -3,10 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :properties do
-    resources :units do
-      resources :tenants
-    end
+  resources :properties, shallow: true do
+    resources :units
+    resources :tenants
   end
 
   get "property_owners", to: "property_owners#index"
