@@ -5,6 +5,7 @@ class CreatePropertyOwners < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :date_of_birth
       t.string :email
+      t.string :password
 
       t.timestamps
     end

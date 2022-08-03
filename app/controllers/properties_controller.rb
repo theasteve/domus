@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
   def index
     @properties = Property.all
+    redirect_to action: 'new' if @properties.empty? 
   end
 
   def show
