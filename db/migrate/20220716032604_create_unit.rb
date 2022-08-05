@@ -3,9 +3,8 @@ class CreateUnit < ActiveRecord::Migration[7.0]
     create_table :units do |t|
       t.string :apartment_name
       t.string :status
-      t.float :monthly_rent_cents
-      t.integer :rooms
-      t.text :notes
+      t.integer :monthly_rent_cents
+      t.string :rooms
       t.references :property, foreign_key: true
 
       t.timestamps

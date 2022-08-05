@@ -8,13 +8,14 @@ class UnitsController < ApplicationController
   end
 
   def new
+    @property = Property.find(params[:property_id])
     @unit = Unit.new
   end
 
   def create
     @property = Property.find(params[:property_id])
     @unit = @property.units.create(unit_params)
-
+  
     if @unit.save
       redirect_to @property
     else
@@ -49,7 +50,7 @@ class UnitsController < ApplicationController
       :status,
       :monthly_rent_cents,
       :rooms,
-      :notes,
+      :notes
     )
   end
 end
