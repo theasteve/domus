@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  skip_before_action :authorized
+  #skip_before_action :authorized
 
   def create
     user = PropertyOwner.find_by(email: params[:email])
