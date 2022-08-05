@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_31_144451) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_211238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,12 +54,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_144451) do
 
   create_table "properties", force: :cascade do |t|
     t.string "building_name"
-    t.string "address_line_one"
-    t.string "address_line_two"
+    t.string "address"
     t.string "city"
     t.string "state"
     t.string "zipcode"
     t.string "country"
+    t.text "notes"
     t.bigint "property_owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -57,9 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_144451) do
   end
 
   create_table "property_owners", force: :cascade do |t|
+    t.string "company_name"
     t.string "first_name"
     t.string "last_name"
-    t.string "date_of_birth"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,9 +93,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_144451) do
   create_table "units", force: :cascade do |t|
     t.string "apartment_name"
     t.string "status"
-    t.float "monthly_rent_cents"
-    t.integer "rooms"
-    t.text "notes"
+    t.integer "monthly_rent_cents"
+    t.string "rooms"
     t.bigint "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
