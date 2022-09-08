@@ -1,12 +1,15 @@
 <div class="py-6">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <h1 class="text-2xl font-semibold text-gray-900">
-      Unit <%= @unit.apartment_name %>
+      Unit Information
     </h1>
   </div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <!-- Replace with your content -->
+    <%= render partial: "units/info", locals: { unit: @unit } %>
     
+    <%= render partial: "units/tenants", locals: { unit: @unit } %>
+
     <!-- /End replace -->
   </div>
 </div>

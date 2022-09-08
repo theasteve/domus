@@ -6,14 +6,16 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :properties, shallow: true do
     resources :units
-    resources :tenants
   end
 
+  resources :units, shallow: true do
+    resources :tenants
+  end
+  
   resources :session, only: [:new, :create]
 
   get "property_owners", to: "property_owners#index"
   post "property_owners", to: "property_owners#sign_in"
 
-  root to: "property_owners#index" 
-
+  root to: "property_owners#index"
 end
