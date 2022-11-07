@@ -1,0 +1,19 @@
+<tr>
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0"><%= unit.apartment_name %></td>
+  <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= unit.monthly_rent %></td>
+  <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= unit.rooms %></td>
+  <td class="whitespace-nowrap py-4 px-3">
+    <% if unit.status == "vacant" %>
+      <span class="inline-flex rounded-full bg-yellow-100 px-2 text-xs font-semibold leading-5 text-yellow-800">
+        <%= unit.status %>
+      </span>
+    <% else %>
+      <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+        <%= unit.status %>
+      </span>
+    <% end %>
+  </td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+    <%= link_to "Show",unit_path(unit), class:"text-indigo-600 hover:text-indigo-900"%>
+  </td>
+</tr>

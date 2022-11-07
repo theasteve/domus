@@ -16,12 +16,21 @@ class UnitsController < ApplicationController
     @property = Property.find(params[:property_id])
     @unit = @property.units.create(unit_params)
   
-    if @unit.save
-      redirect_to @property
-    else
-      Rails.logger.error('Unable to save unit')
-      render 'new'
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.prepend(:unit_list, partial: "properties/unit",
+          locals: { unit: @unit })
+      end
+
+      format.html { redirect_to unit_url }
     end
+
+    # if @unit.save
+    #   redirect_to @property
+    # else
+    #   Rails.logger.error('Unable to save unit')
+    #   render 'new'
+    # end
   end
 
   def update
