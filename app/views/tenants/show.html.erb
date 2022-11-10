@@ -38,7 +38,8 @@
           </div>
           <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
             <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <% if  @tenant.notes.embeds_blobs.any? %>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
                 <% @tenant.notes.embeds_blobs.each do |file| %>
                 <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
@@ -54,8 +55,9 @@
                   </div>
                 </li>
                 <% end %>
-              </ul>
-            </dd>
+                </ul>
+              </dd>
+            <% end %>
           </div>
         </dl>
       </div>
