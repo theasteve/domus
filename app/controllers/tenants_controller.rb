@@ -14,13 +14,16 @@ class TenantsController < ApplicationController
 
   def create
     @unit = Unit.find(params[:unit_id])
-    @tenant = @unit.tenants.create(tenant_params)
-
-    if @tenant.save
-      redirect_to @tenant
-    else
-      Rails.logger.error('Unable to save Tenant')
-      render 'new'
+    @tenant = @unit.tenants.new(tenant_params)
+    
+    respond_to do |format|
+      if @tenant.save
+        format.html { redirect_to @tenant }
+      else
+        format.turbo_stream do 
+          render turbo_stream: turbo_stream.prepend('form', partial: 'errors', locals: { tenant: @tenant }) 
+        end
+      end
     end
   end
 

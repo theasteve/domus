@@ -4,11 +4,11 @@
       Let's add the tenant's information
     </h1>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" id="form">
     <!-- Replace with your content -->
     <%= form_for [@unit, @tenant], html: { class: "space-y-8 divide-gray-200" } do |f| %>
+      <%= render 'errors', tenant: f.object %>
       <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-
         <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
           <div class="space-y-6 sm:space-y-5">
 
@@ -63,7 +63,7 @@
                 <%= f.label :phone_number, 'Phone' %>
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
-                <%= f.text_field :phone_number, value: "(000)000-0000", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.phone_field :phone_number, value: "(000)000-0000", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
               </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <%= f.label :lease_start_date, 'Lease start date' %>
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
-                <%= f.text_field :lease_start_date, value: "", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.date_field :lease_start_date, value: "", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
               </div>
             </div>
 
@@ -82,7 +82,7 @@
                 <%= f.label :lease_end_date, 'Lease end date' %>
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
-                <%= f.text_field :lease_end_date, value: "", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.date_field :lease_end_date, value: "", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
               </div>
             </div>
 
