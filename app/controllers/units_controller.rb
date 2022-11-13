@@ -24,13 +24,6 @@ class UnitsController < ApplicationController
 
       format.html { redirect_to unit_url }
     end
-
-    # if @unit.save
-    #   redirect_to @property
-    # else
-    #   Rails.logger.error('Unable to save unit')
-    #   render 'new'
-    # end
   end
 
   def update
