@@ -39,6 +39,10 @@ class TenantsController < ApplicationController
     @tenant = Tenant.find(params[:id])
 
     if @tenant.update(tenant_params)
+      RentPaymentBuilder.new({ lease_end_date: @tenant.lease_end_date,
+                               lease_start_date: @tenant.lease_start_date,
+                               unit: @tenant.unit }).run
+
       redirect_to @tenant, notice: "Tenant was successfully updated."
     else
       render :edit

@@ -8,6 +8,7 @@ class RentPaymentBuilder
   end
 
   def run
+    destroy_rent_payments
     build_rent_payments
   end
 
@@ -27,6 +28,12 @@ class RentPaymentBuilder
         Rails.logger.error('Something went wrong')
       end
     end
+  end
+
+  def destroy_rent_payments
+    return if @unit.rent_payments.blank?
+
+    @unit.rent_payments.destroy_all
   end
 
   def year(date)
