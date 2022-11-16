@@ -14,24 +14,32 @@ class TenantsController < ApplicationController
 
   def create
     @unit = Unit.find(params[:unit_id])
-    @tenant = @unit.tenants.new(tenant_params)
-    
+    @tenant = @unit.tenant.new(tenant_params)
+
     respond_to do |format|
       if @tenant.save
+        RentPaymentBuilder.new({lease_end_date: @tenant.lease_end_date,
+                                lease_start_date: @tenant.lease_start_date,
+                                unit: @unit}).run
+
         format.html { redirect_to @tenant }
       else
-        format.turbo_stream do 
-          render turbo_stream: turbo_stream.prepend('form', partial: 'errors', locals: { tenant: @tenant }) 
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend("form", partial: "errors", locals: {tenant: @tenant})
         end
       end
     end
+  end
+
+  def edit
+    @tenant = Tenant.find(params[:id])
   end
 
   def update
     @tenant = Tenant.find(params[:id])
 
     if @tenant.update(tenant_params)
-      redirect_to @tenant, notice: 'Tenant was successfully updated.'
+      redirect_to @tenant, notice: "Tenant was successfully updated."
     else
       render :edit
     end

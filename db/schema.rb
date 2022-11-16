@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_211238) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_16_200231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,9 +71,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_211238) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+  end
+
+  create_table "rent_payments", force: :cascade do |t|
+    t.integer "year"
+    t.string "month"
+    t.string "status"
+    t.integer "days_unpaid"
+    t.bigint "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_rent_payments_on_unit_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -98,12 +110,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_211238) do
     t.bigint "property_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "day_rent_due"
     t.index ["property_id"], name: "index_units_on_property_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "properties", "property_owners"
+  add_foreign_key "rent_payments", "units"
   add_foreign_key "tenants", "units"
   add_foreign_key "units", "properties"
 end

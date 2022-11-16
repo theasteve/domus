@@ -15,7 +15,7 @@ class UnitsController < ApplicationController
   def create
     @property = Property.find(params[:property_id])
     @unit = @property.units.create(unit_params)
-  
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.prepend(:unit_list, partial: "properties/unit",
@@ -50,6 +50,7 @@ class UnitsController < ApplicationController
       :property_id,
       :apartment_name,
       :status,
+      :day_rent_due,
       :monthly_rent_cents,
       :rooms,
       :notes
