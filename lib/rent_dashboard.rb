@@ -7,7 +7,8 @@ class RentDashboard
   STATUSES = [
     "Rent due date not set",
     "Rent Paid",
-    "days outstanding"
+    "days outstanding",
+    "Upcoming bill on the "
   ].freeze
 
   def initialize(args = {})
@@ -27,13 +28,15 @@ class RentDashboard
       STATUSES[0]
     elsif current_rent.date_paid
       STATUSES[1]
-    else
+    elsif date.day > unit.day_rent_due
       "#{num_days} " + STATUSES[2]
+    else
+      STATUSES[3] + unit.day_rent_due.ordinalize
     end
   end
 
   def num_days
-    unit.day_rent_due - date.day
+    date.day - unit.day_rent_due
   end
 
   private
