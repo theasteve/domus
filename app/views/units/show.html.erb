@@ -8,7 +8,7 @@
     <!-- Replace with your content -->
     <%= render partial: "units/info", locals: { unit: @unit } %>
 
-    <%= render partial: "units/rents", locals: { unit: @unit } %>
+    <%= render partial: "units/rents", locals: { unit: @unit, dashboard: @dashboard } %>
 
     <%= render partial: "units/tenants", locals: { unit: @unit } %>
 

@@ -7,12 +7,7 @@ class UnitsController < ApplicationController
 
   def show
     @unit = Unit.find(params[:id])
-    date = DateTime.now
-    @current_rent_payment = RentPayment.find_by(
-      unit_id: @unit.id,
-      month: Date::MONTHNAMES[date.month],
-      year: date.year
-    )
+    @dashboard = RentDashboard.new(unit: @unit)
   end
 
   def new
