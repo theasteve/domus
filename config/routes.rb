@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :units, shallow: true do
+    resources :rent_payments, only: [:edit, :update]
     resources :tenants
   end
   
