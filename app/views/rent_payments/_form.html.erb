@@ -1,66 +1,43 @@
-<%= turbo_frame_tag(dom_id(unit)) do %>
-  <%= form_for [@property, @unit], html: { class: "space-y-8 divide-gray-200" } do |f| %>
+<%= turbo_frame_tag(dom_id(rent_payment)) do %>
+  <%= form_for @rent_payment, html: { class: "space-y-8 divide-gray-200" } do |f| %>
     <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-      <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
-        <div>
-          <p class="mt-1 max-w-2xl text-sm text-gray-500">A unit can be an apartment number or a floor</p>
-        </div>
-        <div class="space-y-6 sm:space-y-5">
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              <%= f.label :apartment_name, 'Unit name' %>
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <%= f.text_field :apartment_name, value: "APT 4B", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
-            </div>
-          </div>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              <%= f.label :status, 'Status' %>
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <%= f.select(:status, ['vacant', 'rented'], {}, { class: "max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" }) %>
-            </div>
-          </div>
-
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              <%= f.label :day_rent_due, 'Day of the month when rent is due' %>
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <%= f.number_field :day_rent_due, in: 1..31, value: "Day the rent for the unit is due", class: "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md" %>
-            </div>
-          </div>
-
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="city" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              <%= f.label :monthly_rent_cents, 'Monthly Rent' %>
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span class="text-gray-500 sm:text-sm"> $ </span>
-                </div>
-                <%= f.number_field :monthly_rent_cents, value: 0.00, class: "focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"%>
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <span class="text-gray-500 sm:text-sm" id="price-currency"> USD </span>
-                </div>
+      <div class="space-y-6 divide-y divide-gray-200 pt-8 sm:space-y-5 sm:pt-10">
+        <div class="space-y-6 divide-y divide-gray-200 sm:space-y-5">
+          <div class="pt-6 sm:pt-5">
+            <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+              <label for="first-name" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                <%= f.label :date_paid, 'Date rent paid' %>
+              </label>
+              <div class="mt-1 sm:col-span-2 sm:mt-0">
+                <%= f.date_field :date_paid, value: Date.today, class: "block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm" %>
               </div>
             </div>
           </div>
-          <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-            <label for="country" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-              <%= f.label :rooms, 'Rooms' %>
-            </label>
-            <div class="mt-1 sm:mt-0 sm:col-span-2">
-              <%= f.select(:rooms, ['studio', '1', '2','3', '4', '5+'], {}, { class: "max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md" }) %>
-            </div>
-          </div>
-          <div class="sm:border-t sm:border-gray-200 sm:pt-5">
-            <div>
-              <%= f.label :notes, 'Add your notes & documents', class: "block text-sm font-medium text-gray-700" %>
-              <div class="mt-1">
-                <%= f.rich_text_area :notes, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+          <div class="pt-6 sm:pt-5">
+            <div role="group" aria-labelledby="label-notifications">
+              <div class="sm:grid sm:grid-cols-3 sm:items-baseline sm:gap-4">
+                <div>
+                  <div class="text-base font-medium text-gray-900 sm:text-sm sm:text-gray-700" id="label-notifications">Payment Types</div>
+                </div>
+                <div class="sm:col-span-2">
+                  <div class="max-w-lg">
+                    <p class="text-sm text-gray-500">Types in which rent was paid</p>
+                    <div class="mt-4 space-y-4">
+                      <div class="flex items-center">
+                        <%= f.radio_button :format, "Cash", class: "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" %>
+                        <%= f.label :format, "Cash", class: "ml-3 block text-sm font-medium text-gray-700"%>
+                      </div>
+                      <div class="flex items-center">
+                        <%= f.radio_button :format, "Check", class: "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" %>
+                        <%= f.label :format, "Check", class: "ml-3 block text-sm font-medium text-gray-700"%>
+                      </div>
+                      <div class="flex items-center">
+                        <%= f.radio_button :format, "Bank Transfer", class: "h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" %>
+                        <%= f.label :format, "Bank Transfer", class: "ml-3 block text-sm font-medium text-gray-700"%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -69,8 +46,8 @@
     </div>
     <div class="pt-5">
       <div class="flex justify-end">
-        <%= link_to 'Cancel', property_path(@property), class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-        <%= f.submit "Save", class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= link_to 'Cancel', unit_path(@rent_payment.unit), class: "rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"%>
+        <%= f.submit "Save", class:"ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
       </div>
     </div>
   <% end %>
