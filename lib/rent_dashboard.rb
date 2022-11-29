@@ -18,9 +18,13 @@ class RentDashboard
   def current_rent
     @current_rent ||= RentPayment.find_by(
       unit_id: @unit.id,
-      month: Date::MONTHNAMES[date.month],
+      month: date.month,
       year: date.year
     )
+  end
+  
+  def current_year_rents
+    RentPayment.where('year = ? AND month <= ? AND unit_id = ?', date.year, date.month, unit.id ) 
   end
 
   def status

@@ -1,4 +1,10 @@
 class RentPaymentsController < ApplicationController
+  def index 
+    @unit = Unit.find(params[:unit_id])
+    @rent_payments = @unit.rent_payments 
+    @dashboard = RentDashboard.new(unit: @unit)
+  end
+  
   def edit
     @rent_payment = RentPayment.find(params[:id])
   end

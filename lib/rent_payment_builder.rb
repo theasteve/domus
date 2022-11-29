@@ -14,7 +14,7 @@ class RentPaymentBuilder
 
   def months_dataset
     (lease_start_date..lease_end_date).map do |date|
-      "#{Date::MONTHNAMES[date.month]}-#{date.year}"
+      "#{date.month}-#{date.year}"
     end.uniq
   end
 
@@ -41,6 +41,6 @@ class RentPaymentBuilder
   end
 
   def month(date)
-    date.split('-')[0]
+    date.split('-')[0].to_i
   end
 end
