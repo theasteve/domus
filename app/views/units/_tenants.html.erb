@@ -16,7 +16,6 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
           </svg>
-
           Edit Tenant
         <% end %>
       <% end %>
@@ -27,7 +26,8 @@
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
-            <ul role="list" class="divide-y divide-gray-200">
+          <ul role="list" class="divide-y divide-gray-200">
+            <% if unit.tenant %>
               <li>
                 <%= link_to unit.tenant, class: "block hover:bg-gray-50" do %>
                   <div class="flex items-center px-4 py-4 sm:px-6">
@@ -36,12 +36,12 @@
                         <div>
                           <p class="text-sm font-medium text-indigo-600 truncate"><%= unit.tenant.full_name %></p>
                           <p class="mt-2 flex items-center text-sm text-gray-500">
-                          <!-- Heroicon name: solid/mail -->
-                          <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                          </svg>
-                          <span class="truncate"><%= unit.tenant.email %></span>
+                            <!-- Heroicon name: solid/mail -->
+                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            <span class="truncate"><%= unit.tenant.email %></span>
                           </p>
                         </div>
                       </div>
@@ -55,7 +55,8 @@
                   </div>
                 <% end %>
               </li>
-            </ul>
+            <% end %>
+          </ul>
         </div>
       </div>
     </div>

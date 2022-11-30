@@ -29,13 +29,13 @@ class RentDashboard
 
   def status
     if unit.day_rent_due.blank?
-      STATUSES[0]
+      current_rent.update(status: STATUSES[0])
     elsif current_rent.date_paid
-      STATUSES[1]
+      current_rent.update(status: STATUSES[1])
     elsif date.day > unit.day_rent_due
-      "#{num_days} " + STATUSES[2]
+      current_rent.update(status: "#{num_days} " + STATUSES[2])
     else
-      STATUSES[3] + unit.day_rent_due.ordinalize
+      current_rent.update(status: STATUSES[3] + unit.day_rent_due.ordinalize)
     end
   end
 

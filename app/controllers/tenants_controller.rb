@@ -14,7 +14,7 @@ class TenantsController < ApplicationController
 
   def create
     @unit = Unit.find(params[:unit_id])
-    @tenant = @unit.tenant.new(tenant_params)
+    @tenant = Tenant.new(tenant_params.merge(unit_id: @unit.id))
 
     respond_to do |format|
       if @tenant.save

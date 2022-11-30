@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_133008) do
 
   create_table "rent_payments", force: :cascade do |t|
     t.integer "year"
-    t.string "month"
+    t.integer "month"
     t.string "status"
     t.integer "days_unpaid"
     t.bigint "unit_id"
