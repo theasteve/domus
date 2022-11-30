@@ -20,6 +20,6 @@ class RentPaymentsController < ApplicationController
   private
 
   def rent_payment_params
-    params.require(:rent_payment).permit(:date_paid, :type)
+    params.require(:rent_payment).permit(:date_paid, :format)
   end
 end

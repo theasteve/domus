@@ -82,7 +82,11 @@
                       <%= dashboard.status %>
                     </td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                      <%= link_to "Record Payment", edit_rent_payment_path(dashboard.current_rent), class: "text-indigo-600 hover:text-indigo-900" %>
+                      <% if dashboard.status == 'Rent Paid' %>
+                        <%= link_to "Edit", edit_rent_payment_path(dashboard.current_rent), class: "text-indigo-600 hover:text-indigo-900" %>
+                      <% else %>
+                        <%= link_to "Record Payment", edit_rent_payment_path(dashboard.current_rent), class: "text-indigo-600 hover:text-indigo-900" %>
+                      <% end %>
                     </td>
                   </tr>
                   <!-- More people... -->
