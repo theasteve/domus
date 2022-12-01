@@ -13,10 +13,9 @@ Rails.application.routes.draw do
     resources :tenants
   end
   
-  resources :session, only: [:new, :create]
+  resources :session, only: [:new, :create, :destroy]
 
-  get "property_owners", to: "property_owners#index"
   post "property_owners", to: "property_owners#sign_in"
 
-  root to: "property_owners#index"
+  root to: "home#index"
 end

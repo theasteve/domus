@@ -14,6 +14,6 @@ class SessionController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    redirect_to properties_path, notice: 'Logged out!'
+    redirect_to root_path, status: :see_other, notice: 'Logged out!'
   end
 end
