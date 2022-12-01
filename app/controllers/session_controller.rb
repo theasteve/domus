@@ -10,11 +10,10 @@ class SessionController < ApplicationController
       flash.now.alert = "Credentials are invalid"
       redirect_to properties_path
     end
+  end
 
-    def destroy
-      session.delete(:user_id)
-      redirect_to properties_path, notice: 'Logged out!'
-    end
-
+  def destroy
+    session.delete(:user_id)
+    redirect_to properties_path, notice: 'Logged out!'
   end
 end
