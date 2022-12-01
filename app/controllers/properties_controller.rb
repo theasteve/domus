@@ -36,7 +36,8 @@ class PropertiesController < ApplicationController
       :state,
       :zipcode,
       :country,
-      :photo
+      :photo,
+      :notes
     )
   end
 end
