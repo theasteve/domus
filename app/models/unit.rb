@@ -9,4 +9,10 @@ class Unit < ApplicationRecord
     date_time = DateTime.now
     date_time.end_of_month.day - date_time.day
   end
+
+  def monthly_rent
+    return 0 if self.monthly_rent_cents.nil?
+
+    Money.new(self.monthly_rent_cents * 100).format
+  end
 end
