@@ -81,6 +81,11 @@ test:
 #
 production:
   <<: *default
-  database: domus_production
-  username: serenity
-  password: <%= ENV["SERENITY_DATABASE_PASSWORD"] %>
+  # database: domus_production
+  # username: serenity
+  # password: <%= ENV["SERENITY_DATABASE_PASSWORD"] %>
+  database: <%= Rails.application.credentials.dig(:rds, :database) %>
+  username: <%= Rails.application.credentials.dig(:rds, :username) %>
+  password: <%= Rails.application.credentials.dig(:rds, :password) %>
+  host: <%= Rails.application.credentials.dig(:rds, :host) %>
+  port: 5432
