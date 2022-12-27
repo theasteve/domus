@@ -14,8 +14,7 @@ RUN apk add \
     vips-dev \
     libc-dev \
     libjpeg-turbo-dev \
-    build-base \ 
-    postgresql-client
+    build-base
 
 RUN apk add --update npm
 
@@ -25,4 +24,4 @@ RUN bundle install
 
 RUN yarn install --check-files
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-e","production","-b", "0.0.0.0"]
