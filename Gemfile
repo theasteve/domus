@@ -78,4 +78,8 @@ group :test do
   gem "webdrivers"
 end
 
+group :production do
+  gem 'mini_racer'
+end
+
 gem "tailwindcss-rails", "~> 2.0"

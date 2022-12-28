@@ -128,6 +128,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.1)
+    libv8-node (16.10.0.0)
+    libv8-node (16.10.0.0-x86_64-darwin)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -139,6 +141,8 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
+    mini_racer (0.6.3)
+      libv8-node (~> 16.10.0.0)
     minitest (5.16.2)
     monetize (1.12.0)
       money (~> 6.12)
@@ -271,6 +275,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  mini_racer
   money-rails
   pg (~> 1.1)
   puma (~> 5.0)
