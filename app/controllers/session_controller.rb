@@ -7,8 +7,7 @@ class SessionController < ApplicationController
       session[:user_id] = user.id
       redirect_to properties_path
     else
-      flash.now.alert = "Credentials are invalid"
-      redirect_to properties_path
+      redirect_to root_path,  notice: "Invalid email or password"
     end
   end
 
