@@ -7,6 +7,8 @@ RUN apk add \
   build-base \
   postgresql-dev
 
+RUN gem install bundler -v 2.4.1
+
 RUN apk add \
     tzdata \
     nodejs \
