@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  #before_action :authorized
+  before_action :authorize
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?
+  helper_method :current_user
 
   private
 
@@ -9,11 +9,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= PropertyOwner.find_by(id: session[:user_id])
   end
 
-  def logged_in?
-    current_user
-  end 
+  def authorize 
+    return if current_user
 
-  def authorized   
-    redirect_to property_owners_path unless logged_in?
- end
+    redirect_to sessions_new_path 
+  end
 end
