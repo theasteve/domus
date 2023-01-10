@@ -28,4 +28,4 @@ RUN yarn install --check-files
 
 RUN RAILS_ENV=production rails assets:precompile
 
-CMD ["rails", "server", "-e","production","-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
